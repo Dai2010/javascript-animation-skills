@@ -88,6 +88,17 @@ Part of the open-source motion skills collection. Full hub: **[github.com/iart-a
 
 MIT
 
+
+## Also in this fork: score → audio
+
+This fork adds a second skill, `skills/score-to-audio`: turn a written score into playable audio. It reads exact pitches/durations out of Verovio-style sheet SVGs (the format several web sheet sites ship), falls back to careful image transcription when that is all you have, builds the MIDI, renders it with fluidsynth, and masters a loudness-corrected MP3.
+
+```bash
+python3 skills/score-to-audio/scripts/svg_score.py --page <sheet-page-url> --out score.json
+python3 skills/score-to-audio/scripts/build_midi.py score.json --out piece.mid --bpm 190
+SOUNDFONT="$HOME/music/soundfonts/MS Basic.sf3" skills/score-to-audio/scripts/render.sh piece.mid out.mp3
+```
+
 ---
 
 Built by **[iart.ai](https://iart.ai/?utm_source=github&utm_medium=readme&utm_campaign=javascript-animation-skills&utm_content=footer)**, the AI motion agent: describe it in a prompt, or point it at a CSV or brand kit, and get editable, on-brand motion graphics with exact text and numbers, one-click edits, and batch export.
